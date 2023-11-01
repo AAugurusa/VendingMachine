@@ -1,0 +1,44 @@
+
+.boxComponent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.infoBox{
+    width: 100%;
+    display: flex;
+    margin-right: auto;
+    flex-direction: column;
+    background-color: #411054;
+    height: 100vh;
+    gap: 50px;
+}
+
+.text{
+    color: #d7c4fa;
+    font-family: Inter, sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    width: 100%;
+}
+
+.titleText{
+    color: #d7c4fa;
+    font-family: Inter, sans-serif;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-decoration: underline;
+}
