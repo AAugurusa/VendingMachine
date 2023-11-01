@@ -29,6 +29,18 @@
     width: 100%;
 }
 
+.miniText{
+    color: #d7c4fa;
+    font-family: Inter, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    width: 100%;
+}
+
+
 .titleText{
     color: #d7c4fa;
     font-family: Inter, sans-serif;
@@ -39,6 +51,6 @@
     text-align: center;
     width: 100%;
     margin-top: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 7%;
     text-decoration: underline;
 }

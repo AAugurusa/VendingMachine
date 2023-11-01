@@ -2,7 +2,7 @@
 
 import styles from '../styles/InformationStyles.module.css';
 
-const InformationComponent = ({candyLeft, sellingHistory, lastRefillDate, sellingPrice, sellingCost}) => {
+const AdminInfoComponent = ({candyLeft, sellingHistory, lastRefillDate, sellingPrice, sellingCost}) => {
 
     lastRefillDate = Date.now()
     sellingPrice = 2
@@ -20,8 +20,9 @@ const InformationComponent = ({candyLeft, sellingHistory, lastRefillDate, sellin
             <p className={styles.text}> Cost price: {sellingCost}$</p>
             <p className={styles.text}> Monthly profit: {monthlyProfit}$</p>
             <p className={styles.text}> Days since last refill: {daysSinceLastRefill}</p>
+            <p className={styles.miniText}>currently as administrator </p>
         </div>
     );
 };
 
-export default InformationComponent;
+export default AdminInfoComponent;

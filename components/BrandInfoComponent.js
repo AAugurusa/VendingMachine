@@ -2,7 +2,7 @@
 
 import styles from '../styles/BrandStyles.module.css';
 
-const MachineInfoComponent = () => {
+const BrandInfoComponent = () => {
 
     return (
         <div className={styles.brandBox}>
@@ -11,4 +11,4 @@ const MachineInfoComponent = () => {
     );
 };
 
-export default MachineInfoComponent;
+export default BrandInfoComponent;

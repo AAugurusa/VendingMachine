@@ -2,15 +2,15 @@
 
 import styles from '../../styles/InformationStyles.module.css';
 
-import InformationComponent from "@/components/InformationComponent";
-import MachineInfoComponent from "@/components/MachineInfoComponent";
+import AdminInfoComponent from "@/components/AdminInfoComponent";
+import BrandInfoComponent from "@/components/BrandInfoComponent";
 
 const MainPage = () => {
 
     return (
         <div className={styles.boxComponent}>
-            <InformationComponent/>
-            <MachineInfoComponent/>
+            <AdminInfoComponent/>
+            <BrandInfoComponent/>
         </div>
     );
 };
