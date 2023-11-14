@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import React from "react";
 import styles from '../styles/InformationStyles.module.css';
 import axios from "axios";
+import LogoutButton from "@/components/LogoutButton";
 
 const AdminInfoComponent = () => {
 
@@ -13,8 +14,6 @@ const AdminInfoComponent = () => {
     const [monthlyProfit, setMonthlyProfit] = useState('')
     const [isEditing, setIsEditing] = useState(false);
     const [sales, setSales] = useState([])
-
-
 
 
     useEffect(() => {
@@ -30,7 +29,7 @@ const AdminInfoComponent = () => {
             });
         }
         fetchCandy();
-    },[sellingCost])
+    }, [sellingCost])
 
     useEffect(() => {
         const fetchSales = () => {
@@ -44,7 +43,7 @@ const AdminInfoComponent = () => {
         }
         fetchSales();
 
-    },[])
+    }, [])
 
     useEffect(() => {
         calculateProfit();
@@ -53,7 +52,7 @@ const AdminInfoComponent = () => {
     const calculateProfit = () => {
         let profit = 0;
         sales.forEach(sale => {
-            profit += (sale.price - sale.price * (1/1.5)) * sale.quantity
+            profit += (sale.price - sale.price * (1 / 1.5)) * sale.quantity
         })
 
         setMonthlyProfit(profit.toFixed(2))
@@ -132,6 +131,9 @@ const AdminInfoComponent = () => {
             )}
 
             <p className={styles.miniText}>currently as administrator </p>
+            <div className={styles.buttonContainer}>
+                <LogoutButton/>
+            </div>
         </div>
     );
 };

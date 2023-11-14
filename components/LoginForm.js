@@ -17,8 +17,6 @@ const LoginForm = () => {
     const router = useRouter();
 
 
-
-
     function handlePassword(event) {
         setPassword(event.target.value)
     }
@@ -48,6 +46,7 @@ const LoginForm = () => {
             console.log(response)
             if (response.status === 200) {
                 localStorage.setItem("user", response.data)
+                localStorage.setItem("is_admin", response.data.is_Admin)
                 response.data.is_Admin ? router.push("/admin") : router.push("/operator")
             }
 
@@ -92,12 +91,12 @@ const LoginForm = () => {
         <form className={styles['form-container']}>
             <div>
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Ingresa tu email" onChange={handleEmail} autComplete="one-time-code"/>
+                <input type="email" id="email" name="email" placeholder="Ingresa tu email" onChange={handleEmail}/>
             </div>
             <div>
                 <label htmlFor="password">Contraseña</label>
                 <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña"
-                       onChange={handlePassword} autoComplete="one-time-code"/>
+                       onChange={handlePassword}/>
             </div>
 
             <button className={styles.button} onClick={logInState}>Iniciar sesión</button>

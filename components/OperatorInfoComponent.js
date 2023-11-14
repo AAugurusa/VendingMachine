@@ -3,6 +3,7 @@
 import styles from '../styles/InformationStyles.module.css';
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import LogoutButton from "@/components/LogoutButton";
 
 const OperatorInfoComponent = () => {
 
@@ -25,9 +26,7 @@ const OperatorInfoComponent = () => {
             });
         }
         fetchCandy();
-    },[])
-
-
+    }, [])
 
 
     const handleEditClick = () => {
@@ -91,6 +90,9 @@ const OperatorInfoComponent = () => {
                 <button className={styles.button} onClick={handleEditClick}>Add stock</button>
             )}
             <p className={styles.miniText}> currently as operator </p>
+            <div className={styles.buttonContainer}>
+                <LogoutButton/>
+            </div>
         </div>
     );
 };
