@@ -1,16 +1,31 @@
 'use client'
 
 import styles from '../styles/InformationStyles.module.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 const OperatorInfoComponent = () => {
 
-    const defaultLastRefillDate = new Date(2023, 10, 1); // Note: Months are zero-based (10 is November)
+    // const defaultLastRefillDate = new Date(2023, 10, 1); // Note: Months are zero-based (10 is November)
 
-    const [lastRefillDate, setLastRefillDate] = useState(defaultLastRefillDate);
-    const [candyLeft, setCandyLeft] = useState(10)
+    // const [lastRefillDate, setLastRefillDate] = useState(defaultLastRefillDate);
+    const [candyLeft, setCandyLeft] = useState('')
     const [addedCandy, setAddedCandy] = useState(0)
     const [isEditing, setIsEditing] = useState(false);
+
+
+    useEffect(() => {
+        const fetchCandy = () => {
+            const apiUrl = `http://localhost:3000/api/admin/candy`;
+            axios.get(apiUrl).then((response) => {
+                const candy = response.data;
+                setCandyLeft(candy.stock);
+            }).catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+        }
+        fetchCandy();
+    },[])
 
 
 
@@ -31,13 +46,19 @@ const OperatorInfoComponent = () => {
         if (!isNaN(addedCandy) && addedCandy > 0) {
             const newStock = candyLeft + addedCandyValue;
             setCandyLeft(newStock);
-            setLastRefillDate(new Date()); // Update lastRefillDate to the current date
+            postEditedStock(addedCandyValue);
+            // setLastRefillDate(new Date()); // Update lastRefillDate to the current date
             setIsEditing(false);
         } else {
             // Show an error message or handle invalid input
             console.error('Invalid stock');
         }
     };
+
+    const postEditedStock = (newStock) => {
+        const apiUrl = `http://localhost:3000/api/maintenance/restock/${newStock}`;
+        axios.post(apiUrl).then(r => console.log(r.data)).catch(e => console.log(e))
+    }
     const handleAddedCandyInputChange = (event) => {
         setAddedCandy(event.target.value);
     }
@@ -45,18 +66,21 @@ const OperatorInfoComponent = () => {
     return (
         <div className={styles.infoBox}>
             <p className={styles.titleText}>Machine information:</p>
-            <p className={styles.text}> Remaining stock: {isEditing ? (
-                <input
-                    className={styles.input}
-                    type="number"
-                    min="1"
-                    value={addedCandy}
-                    onChange={handleAddedCandyInputChange}
-                />
+            <p className={styles.text}>{isEditing ? (
+                <>
+                    Adding stock:
+                    <input
+                        className={styles.input}
+                        type="number"
+                        min="1"
+                        value={addedCandy}
+                        onChange={handleAddedCandyInputChange}
+                    />
+                </>
             ) : (
-                `${candyLeft}`
+                `Remaining stock: ${candyLeft}`
             )}</p>
-            <p className={styles.text}>Last refill date: {lastRefillDate.toLocaleDateString('en-GB')}</p>
+            {/*<p className={styles.text}>Last refill date: {lastRefillDate.toLocaleDateString('en-GB')}</p>*/}
             <br></br>
             {isEditing ? (
                 <div className={styles.buttonContainer}>
